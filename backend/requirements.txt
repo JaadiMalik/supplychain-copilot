@@ -1,0 +1,12 @@
+fastapi==0.141.1
+uvicorn
+python-multipart
+requests
+openai
+pymupdf
+chromadb==1.5.9
+duckdb==1.5.5
+pandas
+numpy
+openpyxl
+sqlglot
