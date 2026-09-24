@@ -23,6 +23,12 @@
 
 </div>
 
+> **Project Status — v1.0**
+>
+> SupplyChain Copilot is currently a local-first working prototype and portfolio project. It is not yet production-ready.
+>
+> Contract and supplier analysis is intended for operational decision support only and should not be treated as legal advice.
+
 ---
 
 ## ⚡ What is SupplyChain Copilot?
