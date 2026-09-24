@@ -930,6 +930,12 @@ Do not publish real supplier contracts, commercially sensitive operational data,
 
 ---
 
+## License
+
+Copyright © 2026 Jaadi Malik.
+
+This repository is publicly available for portfolio and demonstration purposes.
+No license is granted for commercial use, redistribution, or derivative works unless explicitly authorized by the author.
 
 ---
 
