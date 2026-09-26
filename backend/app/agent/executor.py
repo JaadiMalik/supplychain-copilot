@@ -49,8 +49,28 @@ def run_agent(
         trace.append(step)
 
     answer = synthesize_answer(question=question, context=context, trace=trace)
+
+    successful_steps = [
+        step
+        for step in trace
+        if step.get("status") == "success"
+    ]
+
+    failed_steps = [
+        step
+        for step in trace
+        if step.get("status") == "error"
+    ]
+
+    if trace and not successful_steps:
+        overall_status = "error"
+    elif successful_steps and failed_steps:
+        overall_status = "partial"
+    else:
+        overall_status = "success"
+
     return {
-        "status": "success",
+        "status": overall_status,
         "answer": answer,
         "trace": trace,
         "rounds_used": len(trace),
