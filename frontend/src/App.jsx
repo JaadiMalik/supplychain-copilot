@@ -31,8 +31,10 @@ import DocumentsPage from "./pages/DocumentsPage";
 import DataPage from "./pages/DataPage";
 import SuppliersPage from "./pages/SuppliersPage";
 import SystemPage from "./pages/SystemPage";
+import CopilotV2Page from "./pages/CopilotV2Page";
 
 import "./App.css";
+import "./v2.css";
 
 
 function App() {
@@ -996,6 +998,13 @@ function App() {
 
         <section className="workspace">
 
+          {/* Copilot V2 */}
+          {activePage === "copilot" && (
+            <CopilotV2Page />
+          )}
+
+
+
           {/* Dashboard */}
 
           {activePage ===
@@ -1048,7 +1057,7 @@ function App() {
           ================================================== */}
 
           {activePage ===
-            "copilot" && (
+            "copilot-legacy" && (
             <>
 
               {/* ==================================================

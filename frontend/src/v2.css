@@ -1,0 +1,70 @@
+.v2-copilot-page {
+  display: grid;
+  gap: 18px;
+}
+
+.v2-question-form,
+.v2-panel {
+  background: var(--panel, #ffffff);
+  border: 1px solid rgba(127, 127, 127, 0.2);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.v2-question-form textarea {
+  width: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.v2-question-form button,
+.v2-export-button {
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.v2-chip-row,
+.v2-export-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.v2-chip {
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.v2-trace-list {
+  display: grid;
+  gap: 10px;
+}
+
+.v2-trace-step {
+  border: 1px solid rgba(127, 127, 127, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.v2-status {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.v2-muted {
+  opacity: 0.7;
+}
+
+.v2-error {
+  border: 1px solid rgba(180, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+}

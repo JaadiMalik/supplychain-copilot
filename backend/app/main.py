@@ -32,6 +32,8 @@ from app.analytics.dataset_service import (
 )
 
 from app.routing.service import ask_supplychain_copilot
+from app.context.api import router as context_router
+from app.v2.api import router as v2_router
 
 
 # ==================================================
@@ -52,6 +54,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(context_router)
+app.include_router(v2_router)
 
 # ==================================================
 # Storage folders
