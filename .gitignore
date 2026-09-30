@@ -58,3 +58,6 @@ tmp/
 temp/
 *.tmp
 backend/data/reports/
+
+# Generated evaluation reports
+backend/evals/reports/
