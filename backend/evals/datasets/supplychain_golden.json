@@ -1,0 +1,274 @@
+{
+  "version": "1.0",
+  "cases": [
+    {
+      "id": "CTX-001",
+      "mode": "context",
+      "tags": [
+        "smoke"
+      ],
+      "question": "Which purchase orders are open?",
+      "expected": {
+        "intent": "purchase_order_analysis",
+        "statuses": [
+          "open"
+        ],
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-002",
+      "mode": "context",
+      "tags": [
+        "smoke",
+        "combined"
+      ],
+      "question": "Which open purchase orders belong to suppliers with contractual late-delivery penalties?",
+      "expected": {
+        "intent": "combined_operational_contract_analysis",
+        "statuses": [
+          "open"
+        ],
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-003",
+      "mode": "context",
+      "tags": [
+        "smoke",
+        "contract"
+      ],
+      "question": "What is the late-delivery penalty in the Atlas Industrial contract?",
+      "expected": {
+        "intent": "contract_analysis",
+        "suppliers": [
+          {
+            "canonical_name": "Atlas Industrial Supplies Ltd.",
+            "alias_resolved": true
+          }
+        ],
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-004",
+      "mode": "context",
+      "tags": [
+        "smoke"
+      ],
+      "question": "Show delayed shipments.",
+      "expected": {
+        "intent": "shipment_analysis",
+        "statuses": [
+          "delayed"
+        ],
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-005",
+      "mode": "context",
+      "tags": [
+        "smoke"
+      ],
+      "question": "Which inventory items are below reorder level?",
+      "expected": {
+        "intent": "inventory_analysis",
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-006",
+      "mode": "context",
+      "tags": [
+        "alias"
+      ],
+      "question": "Show open purchase orders from Prime Tools.",
+      "expected": {
+        "intent": "purchase_order_analysis",
+        "statuses": [
+          "open"
+        ],
+        "suppliers": [
+          {
+            "canonical_name": "Prime Tools",
+            "alias_resolved": false
+          }
+        ],
+        "warning_count": 1
+      }
+    },
+    {
+      "id": "CTX-007",
+      "mode": "context",
+      "tags": [
+        "status"
+      ],
+      "question": "Which shipments were delivered late?",
+      "expected": {
+        "intent": "shipment_analysis",
+        "statuses": [
+          "delivered_late"
+        ],
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-008",
+      "mode": "context",
+      "tags": [
+        "contract"
+      ],
+      "question": "What are the payment terms in the supplier agreement?",
+      "expected": {
+        "intent": "contract_analysis",
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-009",
+      "mode": "context",
+      "tags": [
+        "supplier"
+      ],
+      "question": "Give me a supplier overview.",
+      "expected": {
+        "intent": "supplier_analysis",
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "CTX-010",
+      "mode": "context",
+      "tags": [
+        "general"
+      ],
+      "question": "What should I review today?",
+      "expected": {
+        "intent": "general_supplychain_question",
+        "warning_count": 0
+      }
+    },
+    {
+      "id": "AGENT-001",
+      "mode": "agent",
+      "tags": [
+        "smoke",
+        "combined"
+      ],
+      "question": "Which open purchase orders belong to suppliers with contractual late-delivery penalties?",
+      "expected": {
+        "intent": "combined_operational_contract_analysis",
+        "tools": [
+          "run_combined_analysis"
+        ],
+        "tools_exact": true,
+        "status": "success",
+        "rounds_used": 1,
+        "confirmed_suppliers": [
+          "Atlas Industrial"
+        ],
+        "confirmed_purchase_orders": [
+          "PO1001"
+        ],
+        "answer_contains": [
+          "PO1001",
+          "Atlas Industrial",
+          "0.5%",
+          "5%"
+        ],
+        "sources": [
+          {
+            "document": "Synthetic_Supplier_Agreement_RAG_Test.pdf",
+            "page": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "AGENT-002",
+      "mode": "agent",
+      "tags": [
+        "structured"
+      ],
+      "question": "Which purchase orders are open?",
+      "expected": {
+        "intent": "purchase_order_analysis",
+        "tools": [
+          "query_operational_data"
+        ],
+        "tools_exact": true,
+        "status": "success"
+      }
+    },
+    {
+      "id": "AGENT-003",
+      "mode": "agent",
+      "tags": [
+        "contract"
+      ],
+      "question": "What is the late-delivery penalty in the Atlas Industrial contract?",
+      "expected": {
+        "intent": "contract_analysis",
+        "tools": [
+          "search_contract_evidence"
+        ],
+        "tools_exact": true,
+        "status": "success",
+        "answer_contains": [
+          "0.5%",
+          "5%"
+        ],
+        "sources": [
+          {
+            "document": "Synthetic_Supplier_Agreement_RAG_Test.pdf",
+            "page": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "RAG-001",
+      "mode": "rag",
+      "tags": [
+        "smoke",
+        "retrieval"
+      ],
+      "question": "What is the late-delivery service credit rate and maximum cap?",
+      "expected": {
+        "answer_contains": [
+          "0.5%",
+          "5%"
+        ],
+        "sources": [
+          {
+            "document": "Synthetic_Supplier_Agreement_RAG_Test.pdf",
+            "page": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "RAG-002",
+      "mode": "rag",
+      "tags": [
+        "retrieval"
+      ],
+      "question": "What exceptions apply to the late-delivery service credit?",
+      "expected": {
+        "answer_contains": [
+          "Buyer-requested change",
+          "force majeure",
+          "carrier"
+        ],
+        "sources": [
+          {
+            "document": "Synthetic_Supplier_Agreement_RAG_Test.pdf",
+            "page": 3
+          }
+        ]
+      }
+    }
+  ]
+}
