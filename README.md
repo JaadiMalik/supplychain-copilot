@@ -12,7 +12,7 @@
 ![DuckDB](https://img.shields.io/badge/DuckDB-Analytics-FFF000?logo=duckdb&logoColor=111)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20Search-7C3AED)
 ![Local AI](https://img.shields.io/badge/AI-Local--First-111827)
-![Version](https://img.shields.io/badge/version-v1.0-2563EB)
+![Version](https://img.shields.io/badge/version-v2.1-2563EB)
 
 [Preview](#-application-preview) ·
 [Why it matters](#-why-this-project-is-different) ·
@@ -23,7 +23,7 @@
 
 </div>
 
-> **Project Status — v1.0**
+> **Project Status — v2.1**
 >
 > SupplyChain Copilot is currently a local-first working prototype and portfolio project. It is not yet production-ready.
 >
@@ -954,3 +954,32 @@ GitHub: [@JaadiMalik](https://github.com/JaadiMalik)
 **Local AI. Operational data. Contract evidence. Deterministic decisions.**
 
 </div>
+
+## 📚 Engineering Documentation
+
+The repository includes deeper engineering documentation for architecture, local-model portability, evaluation, and operations:
+
+- [`docs/README.md`](docs/README.md) — documentation index
+- [`docs/architecture/SYSTEM_ARCHITECTURE.md`](docs/architecture/SYSTEM_ARCHITECTURE.md) — full system design and request flows
+- [`docs/LOCAL_MODEL_PORTABILITY.md`](docs/LOCAL_MODEL_PORTABILITY.md) — how to evaluate and replace the local LLM/runtime
+- [`docs/DEVELOPMENT_GUIDE.md`](docs/DEVELOPMENT_GUIDE.md) — setup, tests, troubleshooting, and Git workflow
+- [`docs/EVALUATION_AND_OBSERVABILITY.md`](docs/EVALUATION_AND_OBSERVABILITY.md) — golden tests, retrieval experiments, telemetry, and model-swap gates
+- [`docs/AI_QUALITY_V2_1.md`](docs/AI_QUALITY_V2_1.md) — engineering notes for the Day 6–10 AI-quality upgrade
+
+### Portability principle
+
+The current reference stack uses LM Studio + Qwen 3.5 9B for generation and Nomic Embed Text for embeddings, but business logic should not depend on those model names.
+
+When changing the local model:
+
+```text
+change provider/model adapter
+ -> keep supplier identity and business rules deterministic
+ -> validate structured outputs
+ -> re-index only if the embedding model changes
+ -> run targeted tests
+ -> run the full golden suite
+ -> compare observability and latency
+```
+
+See [`docs/LOCAL_MODEL_PORTABILITY.md`](docs/LOCAL_MODEL_PORTABILITY.md) before changing the inference runtime.
